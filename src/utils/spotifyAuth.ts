@@ -1,5 +1,3 @@
-"use server";
-
 let cachedToken: string | null = null;
 let tokenExpiration: number = 0;
 
