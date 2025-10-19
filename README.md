@@ -1,4 +1,8 @@
-# 🚀 Tecnologias
+## 🌐 Demo
+
+**[👉 Acesse o projeto em produção](https://spotify-app-self.vercel.app/artists/0xRXCcSX89eobfrshSVdyu)**
+
+## 🚀 Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -56,13 +60,30 @@ pnpm install
 
 ## ⚙️ Configuração
 
-### Spotify API
+### Variáveis de Ambiente
 
-Este projeto utiliza a API do Spotify. Você precisa configurar as credenciais da API:
+O projeto utiliza variáveis de ambiente para configurar a API do Spotify. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```env
+# Spotify API Credentials
+VITE_SPOTIFY_CLIENT_ID=seu_client_id_aqui
+VITE_SPOTIFY_CLIENT_SECRET=seu_client_secret_aqui
+
+# Spotify API Base URL
+VITE_BASE_SPOTIFY_URL=https://api.spotify.com/v1
+```
+
+### Como obter as credenciais do Spotify
 
 1. Acesse o [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-2. Crie uma nova aplicação
-3. Configure as variáveis de ambiente necessárias no arquivo de autenticação
+2. Faça login com sua conta Spotify
+3. Clique em "Create app" para criar uma nova aplicação
+4. Preencha os dados obrigatórios:
+   - **App name**: Nome da sua aplicação
+   - **App description**: Descrição da aplicação
+   - **Redirect URI**: `http://localhost:5173` (para desenvolvimento local)
+5. Após criar, você terá acesso ao **Client ID** e **Client Secret**
+6. Copie essas credenciais para o arquivo `.env`
 
 ## 🎯 Scripts Disponíveis
 
@@ -72,12 +93,6 @@ pnpm dev
 
 # Criar build de produção
 pnpm build
-
-# Visualizar build de produção
-pnpm preview
-
-# Executar linter
-pnpm lint
 ```
 
 ## 📁 Estrutura do Projeto
