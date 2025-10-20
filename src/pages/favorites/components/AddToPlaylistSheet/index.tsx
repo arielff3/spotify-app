@@ -1,9 +1,11 @@
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { CheckCircle2, Loader2, Plus, Search, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useTranslation } from "react-i18next";
-import { Search, Plus, CheckCircle2, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
 	Sheet,
 	SheetContent,
@@ -11,14 +13,13 @@ import {
 	SheetHeader,
 	SheetTitle,
 } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useFavoritesContext } from "@/contexts/FavoritesContext";
+import { usePlaylistsContext } from "@/contexts/PlaylistsContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import { useFavorites } from "@/hooks/useFavorites";
-import { addTrackToPlaylist } from "@/utils/playlistsDB";
-import { useSearchTracks } from "@/pages/favorites/hooks/useSearchTracks";
+import { type AddToPlaylistFormData, addToPlaylistSchema } from "@/pages/favorites/components/AddToPlaylistSheet/schema";
 import type { AddToPlaylistSheetProps } from "@/pages/favorites/components/AddToPlaylistSheet/types";
-import { addToPlaylistSchema, type AddToPlaylistFormData } from "@/pages/favorites/components/AddToPlaylistSheet/schema";
+import { useSearchTracks } from "@/pages/favorites/hooks/useSearchTracks";
+import { addTrackToPlaylist } from "@/utils/playlistsDB";
 
 
 export const AddToPlaylistSheet = ({
@@ -27,7 +28,9 @@ export const AddToPlaylistSheet = ({
 	existingTrackIds,
 }: AddToPlaylistSheetProps) => {
 	const { t } = useTranslation();
-	const { addFavorite } = useFavorites();
+	const {
+		actions: { addFavorite },
+	} = useFavoritesContext();
 	const [open, setOpen] = useState(false);
 
 	const {

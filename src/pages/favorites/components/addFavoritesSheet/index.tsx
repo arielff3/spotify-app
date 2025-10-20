@@ -1,17 +1,20 @@
-import {  useState } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { useTranslation } from "react-i18next";
 import {
-	Music,
-	Search,
-	Plus,
 	CheckCircle2,
-	Loader2,
 	ListMusic,
+	Loader2,
+	Music,
+	Plus,
+	Search,
 	X,
 } from "lucide-react";
+import {  useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
 	Sheet,
 	SheetContent,
@@ -21,23 +24,25 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useFavoritesContext } from "@/contexts/FavoritesContext";
+import { usePlaylistsContext } from "@/contexts/PlaylistsContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import { useFavorites } from "@/hooks/useFavorites";
-import { createPlaylist } from "@/utils/playlistsDB";
 import {
-	addFavoritesSchema,
 	type AddFavoritesFormData,
+	addFavoritesSchema,
 	type SpotifyTrackSearchResult,
 } from "@/pages/favorites/components/addFavoritesSheet/schema";
 import { useSearchTracks } from "@/pages/favorites/hooks/useSearchTracks";
-import { Checkbox } from "@/components/ui/checkbox";
 
 export const AddFavoritesSheet = () => {
 	const { t } = useTranslation();
-	const { addFavorite } = useFavorites();
+	const {
+		actions: { addFavorite },
+	} = useFavoritesContext();
+	const {
+		actions: { createNewPlaylist },
+	} = usePlaylistsContext();
 	const [open, setOpen] = useState(false);
 
 	const {
@@ -116,7 +121,7 @@ export const AddFavoritesSheet = () => {
 		try {
 			if (data.addToPlaylist && data.playlistName) {
 				const trackIds = data.selectedTracks.map((track) => track.id);
-				await createPlaylist({
+				await createNewPlaylist({
 					name: data.playlistName,
 					notes: data.playlistNotes,
 					trackIds,

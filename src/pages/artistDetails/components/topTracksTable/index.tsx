@@ -1,6 +1,7 @@
 import { Heart, Play } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 import {
 	Table,
 	TableBody,
@@ -9,16 +10,17 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
+import { useFavoritesContext } from "@/contexts/FavoritesContext";
 import type { TopTracksTableProps } from "@/pages/artistDetails/components/topTracksTable/types";
-import { useFavorites } from "@/hooks/useFavorites";
 import { isFavorite as checkIsFavorite } from "@/utils/favoritesDB";
 
 
 
 export const TopTracksTable = ({ tracks }: TopTracksTableProps) => {
 	const { t } = useTranslation();
-	const { toggleFavorite } = useFavorites();
+	const {
+		actions: { toggleFavorite },
+	} = useFavoritesContext();
 	const [favoriteStates, setFavoriteStates] = useState<Record<string, boolean>>(
 		{},
 	);

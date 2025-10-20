@@ -3,7 +3,8 @@ import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { NuqsAdapter } from "nuqs/adapters/react";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-
+import { FavoritesProvider } from "./contexts/FavoritesContext";
+import { PlaylistsProvider } from "./contexts/PlaylistsContext";
 import { routeTree } from "./routeTree.gen";
 import "./index.css";
 import "./i18n";
@@ -32,7 +33,11 @@ if (!rootElement.innerHTML) {
 		<StrictMode>
 			<NuqsAdapter>
 				<QueryClientProvider client={queryClient}>
-					<RouterProvider router={router} />
+					<FavoritesProvider>
+						<PlaylistsProvider>
+							<RouterProvider router={router} />
+						</PlaylistsProvider>
+					</FavoritesProvider>
 				</QueryClientProvider>
 			</NuqsAdapter>
 		</StrictMode>,

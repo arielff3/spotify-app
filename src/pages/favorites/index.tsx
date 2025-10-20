@@ -1,39 +1,41 @@
-import { Heart, Music, Trash2, ListMusic, Trash } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { Link } from "@tanstack/react-router";
+import { Heart, ListMusic, Music, Trash, Trash2 } from "lucide-react";
+import { parseAsStringEnum, useQueryState } from "nuqs";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty";
+import { GlobalLoading } from "@/components/ui/global-loading";
 import {
 	Tabs,
 	TabsContent,
 	TabsList,
 	TabsTrigger,
 } from "@/components/ui/tabs";
-import {
-	Empty,
-	EmptyHeader,
-	EmptyMedia,
-	EmptyTitle,
-	EmptyDescription,
-} from "@/components/ui/empty";
-import { GlobalLoading } from "@/components/ui/global-loading";
-import { useFavorites } from "@/hooks/useFavorites";
-import { usePlaylists } from "@/pages/favorites/hooks/usePlaylists";
-import { AddFavoritesSheet } from "./components/addFavoritesSheet";
+import { useFavoritesContext } from "@/contexts/FavoritesContext";
+import { usePlaylistsContext } from "@/contexts/PlaylistsContext";
 import { AddToPlaylistSheet } from "./components/AddToPlaylistSheet";
-import { parseAsStringEnum, useQueryState } from "nuqs";
+import { AddFavoritesSheet } from "./components/addFavoritesSheet";
 
 export const FavoritesPage = () => {
 	const [tab, setTab] = useQueryState("tab", parseAsStringEnum(["favorites", "playlists"]));
 	const { t } = useTranslation();
-	const { groupedByArtist, isLoading, removeFavorite, clearAll, favorites } =
-		useFavorites();
+	
+	const {
+		state: { favorites, isLoading },
+		actions: { groupedByArtist, removeFavorite, clearAll },
+	} = useFavoritesContext();
 
 	const {
-		playlists,
-		isLoading: playlistsLoading,
-		removePlaylist,
-	} = usePlaylists();
+		state: { playlists, isLoading: playlistsLoading },
+		actions: { removePlaylist },
+	} = usePlaylistsContext();
 
 	const formatDuration = (ms: number) => {
 		const minutes = Math.floor(ms / 60000);
