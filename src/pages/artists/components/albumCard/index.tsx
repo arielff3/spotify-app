@@ -8,7 +8,12 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
 	const releaseYear = new Date(album.release_date).getFullYear();
 	const { t } = useTranslation();
 
-	const albumType = album.album_type === "album" ? t("pages.artists.album") : album.album_type === "single" ? t("pages.artists.single") : t("pages.artists.compilation");
+	const albumType =
+		album.album_type === "album"
+			? t("pages.artists.album")
+			: album.album_type === "single"
+				? t("pages.artists.single")
+				: t("pages.artists.compilation");
 
 	return (
 		<Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 gap-0 py-0">
@@ -41,7 +46,10 @@ export const AlbumCard = ({ album }: AlbumCardProps) => {
 
 					<div className="flex items-center gap-2">
 						<Disc3 className="h-4 w-4" />
-						<span>{album.total_tracks} {album.total_tracks === 1 ? 'faixa' : 'faixas'}</span>
+						<span>
+							{album.total_tracks}{" "}
+							{album.total_tracks === 1 ? "faixa" : "faixas"}
+						</span>
 					</div>
 				</div>
 

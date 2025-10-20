@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getArtistAlbums } from "./actions/getArtistAlbums";
 import { FETCH_TAGS } from "@/constants/fetchTags";
+import { getArtistAlbums } from "./actions/getArtistAlbums";
 
 export const useGetArtistAlbums = (artistId: string) => {
 	return useQuery({
@@ -9,4 +9,3 @@ export const useGetArtistAlbums = (artistId: string) => {
 		enabled: !!artistId,
 	});
 };
-

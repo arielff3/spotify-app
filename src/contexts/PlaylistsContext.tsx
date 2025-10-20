@@ -101,18 +101,15 @@ export const PlaylistsProvider = ({ children }: { children: ReactNode }) => {
 		loadPlaylists();
 	}, [loadPlaylists]);
 
-	const removePlaylist = useCallback(
-		async (playlistId: string) => {
-			try {
-				await deletePlaylist(playlistId);
-				dispatch({ type: "REMOVE_PLAYLIST", payload: playlistId });
-			} catch (error) {
-				console.error("Error removing playlist:", error);
-				throw error;
-			}
-		},
-		[],
-	);
+	const removePlaylist = useCallback(async (playlistId: string) => {
+		try {
+			await deletePlaylist(playlistId);
+			dispatch({ type: "REMOVE_PLAYLIST", payload: playlistId });
+		} catch (error) {
+			console.error("Error removing playlist:", error);
+			throw error;
+		}
+	}, []);
 
 	const updatePlaylistData = useCallback(
 		async (
@@ -173,4 +170,3 @@ export const usePlaylistsContext = () => {
 	}
 	return context;
 };
-

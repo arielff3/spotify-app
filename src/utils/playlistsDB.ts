@@ -162,4 +162,3 @@ export const removeTrackFromPlaylist = async (
 		trackIds: playlist.trackIds.filter((id) => id !== trackId),
 	});
 };
-

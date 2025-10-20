@@ -7,7 +7,7 @@ export const useGetAllArtists = ({
 	page,
 	limit = 20,
 	search,
-  type,
+	type,
 }: UseGetAllArtistsParams) => {
 	return useQuery({
 		queryKey: [FETCH_TAGS.ARTISTS.ALL, page, limit, search, type],

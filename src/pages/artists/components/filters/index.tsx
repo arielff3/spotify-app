@@ -1,12 +1,15 @@
 import { ChevronDown } from "lucide-react";
 import {
-	DropdownMenu,DropdownMenuContent, DropdownMenuItem, 
-	DropdownMenuTrigger
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
 	InputGroup,
-	InputGroupAddon,InputGroupButton, 
-	InputGroupInput
+	InputGroupAddon,
+	InputGroupButton,
+	InputGroupInput,
 } from "@/components/ui/input-group";
 import { cn } from "@/lib/utils";
 import { useFilters } from "@/pages/artists/hooks/useFilters";

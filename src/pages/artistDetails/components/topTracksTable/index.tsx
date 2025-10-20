@@ -14,8 +14,6 @@ import { useFavoritesContext } from "@/contexts/FavoritesContext";
 import type { TopTracksTableProps } from "@/pages/artistDetails/components/topTracksTable/types";
 import { isFavorite as checkIsFavorite } from "@/utils/favoritesDB";
 
-
-
 export const TopTracksTable = ({ tracks }: TopTracksTableProps) => {
 	const { t } = useTranslation();
 	const {
@@ -42,7 +40,7 @@ export const TopTracksTable = ({ tracks }: TopTracksTableProps) => {
 		return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 	};
 
-	const handleToggleFavorite = async (track: typeof tracks[0]) => {
+	const handleToggleFavorite = async (track: (typeof tracks)[0]) => {
 		await toggleFavorite({
 			id: track.id,
 			name: track.name,
@@ -113,30 +111,30 @@ export const TopTracksTable = ({ tracks }: TopTracksTableProps) => {
 							<TableCell className="text-center">
 								{formatDuration(track.duration_ms)}
 							</TableCell>
-						<TableCell className="text-center">{track.popularity}</TableCell>
-						<TableCell className="text-center">
-							<div className="flex items-center justify-center gap-2">
-								<Button
-									size="icon"
-									variant="ghost"
-									onClick={() => handleToggleFavorite(track)}
-								>
-									<Heart
-										className={`w-4 h-4 ${favoriteStates[track.id] ? "fill-red-500 text-red-500" : ""}`}
-									/>
-								</Button>
-								{track.preview_url && (
-									<a
-										href={track.preview_url}
-										target="_blank"
-										rel="noreferrer"
-										className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+							<TableCell className="text-center">{track.popularity}</TableCell>
+							<TableCell className="text-center">
+								<div className="flex items-center justify-center gap-2">
+									<Button
+										size="icon"
+										variant="ghost"
+										onClick={() => handleToggleFavorite(track)}
 									>
-										<Play className="w-4 h-4" />
-									</a>
-								)}
-							</div>
-						</TableCell>
+										<Heart
+											className={`w-4 h-4 ${favoriteStates[track.id] ? "fill-red-500 text-red-500" : ""}`}
+										/>
+									</Button>
+									{track.preview_url && (
+										<a
+											href={track.preview_url}
+											target="_blank"
+											rel="noreferrer"
+											className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+										>
+											<Play className="w-4 h-4" />
+										</a>
+									)}
+								</div>
+							</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
@@ -144,4 +142,3 @@ export const TopTracksTable = ({ tracks }: TopTracksTableProps) => {
 		</div>
 	);
 };
-

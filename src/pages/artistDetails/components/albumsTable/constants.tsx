@@ -39,15 +39,11 @@ export const ALBUMS_COLUMNS = [
 	columnHelper.accessor("total_tracks", {
 		id: "total_tracks",
 		header: () => "Faixas",
-		cell: ({ getValue }) => (
-			<div className="text-center">{getValue()}</div>
-		),
+		cell: ({ getValue }) => <div className="text-center">{getValue()}</div>,
 	}),
 	columnHelper.accessor("album_type", {
 		id: "album_type",
 		header: () => "Tipo",
-		cell: ({ getValue }) => (
-			<span className="capitalize">{getValue()}</span>
-		),
+		cell: ({ getValue }) => <span className="capitalize">{getValue()}</span>,
 	}),
 ];

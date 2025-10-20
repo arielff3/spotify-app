@@ -9,4 +9,3 @@ export const getArtistAlbums = async (
 		`/artists/${artistId}/albums?include_groups=album,single&limit=${limit}`,
 	);
 };
-

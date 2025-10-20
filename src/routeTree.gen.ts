@@ -8,88 +8,88 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routers/__root'
-import { Route as FavoritesRouteImport } from './routers/favorites'
-import { Route as IndexRouteImport } from './routers/index'
-import { Route as ArtistsArtistIdRouteImport } from './routers/artists.$artistId'
+import { Route as rootRouteImport } from "./routers/__root";
+import { Route as FavoritesRouteImport } from "./routers/favorites";
+import { Route as IndexRouteImport } from "./routers/index";
+import { Route as ArtistsArtistIdRouteImport } from "./routers/artists.$artistId";
 
 const FavoritesRoute = FavoritesRouteImport.update({
-  id: '/favorites',
-  path: '/favorites',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/favorites",
+	path: "/favorites",
+	getParentRoute: () => rootRouteImport,
+} as any);
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/",
+	path: "/",
+	getParentRoute: () => rootRouteImport,
+} as any);
 const ArtistsArtistIdRoute = ArtistsArtistIdRouteImport.update({
-  id: '/artists/$artistId',
-  path: '/artists/$artistId',
-  getParentRoute: () => rootRouteImport,
-} as any)
+	id: "/artists/$artistId",
+	path: "/artists/$artistId",
+	getParentRoute: () => rootRouteImport,
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/favorites': typeof FavoritesRoute
-  '/artists/$artistId': typeof ArtistsArtistIdRoute
+	"/": typeof IndexRoute;
+	"/favorites": typeof FavoritesRoute;
+	"/artists/$artistId": typeof ArtistsArtistIdRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/favorites': typeof FavoritesRoute
-  '/artists/$artistId': typeof ArtistsArtistIdRoute
+	"/": typeof IndexRoute;
+	"/favorites": typeof FavoritesRoute;
+	"/artists/$artistId": typeof ArtistsArtistIdRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/favorites': typeof FavoritesRoute
-  '/artists/$artistId': typeof ArtistsArtistIdRoute
+	__root__: typeof rootRouteImport;
+	"/": typeof IndexRoute;
+	"/favorites": typeof FavoritesRoute;
+	"/artists/$artistId": typeof ArtistsArtistIdRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/favorites' | '/artists/$artistId'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/favorites' | '/artists/$artistId'
-  id: '__root__' | '/' | '/favorites' | '/artists/$artistId'
-  fileRoutesById: FileRoutesById
+	fileRoutesByFullPath: FileRoutesByFullPath;
+	fullPaths: "/" | "/favorites" | "/artists/$artistId";
+	fileRoutesByTo: FileRoutesByTo;
+	to: "/" | "/favorites" | "/artists/$artistId";
+	id: "__root__" | "/" | "/favorites" | "/artists/$artistId";
+	fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  FavoritesRoute: typeof FavoritesRoute
-  ArtistsArtistIdRoute: typeof ArtistsArtistIdRoute
+	IndexRoute: typeof IndexRoute;
+	FavoritesRoute: typeof FavoritesRoute;
+	ArtistsArtistIdRoute: typeof ArtistsArtistIdRoute;
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/favorites': {
-      id: '/favorites'
-      path: '/favorites'
-      fullPath: '/favorites'
-      preLoaderRoute: typeof FavoritesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/artists/$artistId': {
-      id: '/artists/$artistId'
-      path: '/artists/$artistId'
-      fullPath: '/artists/$artistId'
-      preLoaderRoute: typeof ArtistsArtistIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
+declare module "@tanstack/react-router" {
+	interface FileRoutesByPath {
+		"/favorites": {
+			id: "/favorites";
+			path: "/favorites";
+			fullPath: "/favorites";
+			preLoaderRoute: typeof FavoritesRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/": {
+			id: "/";
+			path: "/";
+			fullPath: "/";
+			preLoaderRoute: typeof IndexRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		"/artists/$artistId": {
+			id: "/artists/$artistId";
+			path: "/artists/$artistId";
+			fullPath: "/artists/$artistId";
+			preLoaderRoute: typeof ArtistsArtistIdRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+	}
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  FavoritesRoute: FavoritesRoute,
-  ArtistsArtistIdRoute: ArtistsArtistIdRoute,
-}
+	IndexRoute: IndexRoute,
+	FavoritesRoute: FavoritesRoute,
+	ArtistsArtistIdRoute: ArtistsArtistIdRoute,
+};
 export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+	._addFileChildren(rootRouteChildren)
+	._addFileTypes<FileRouteTypes>();

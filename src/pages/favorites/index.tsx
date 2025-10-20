@@ -12,21 +12,19 @@ import {
 	EmptyTitle,
 } from "@/components/ui/empty";
 import { GlobalLoading } from "@/components/ui/global-loading";
-import {
-	Tabs,
-	TabsContent,
-	TabsList,
-	TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useFavoritesContext } from "@/contexts/FavoritesContext";
 import { usePlaylistsContext } from "@/contexts/PlaylistsContext";
 import { AddToPlaylistSheet } from "./components/AddToPlaylistSheet";
 import { AddFavoritesSheet } from "./components/addFavoritesSheet";
 
 export const FavoritesPage = () => {
-	const [tab, setTab] = useQueryState("tab", parseAsStringEnum(["favorites", "playlists"]));
+	const [tab, setTab] = useQueryState(
+		"tab",
+		parseAsStringEnum(["favorites", "playlists"]),
+	);
 	const { t } = useTranslation();
-	
+
 	const {
 		state: { favorites, isLoading },
 		actions: { groupedByArtist, removeFavorite, clearAll },
@@ -106,7 +104,11 @@ export const FavoritesPage = () => {
 			)}
 
 			{!hasNoData && (
-				<Tabs defaultValue={tab || "favorites"} className="w-full" onValueChange={(value) => setTab(value as "favorites" | "playlists")}>
+				<Tabs
+					defaultValue={tab || "favorites"}
+					className="w-full"
+					onValueChange={(value) => setTab(value as "favorites" | "playlists")}
+				>
 					<TabsList>
 						<TabsTrigger value="favorites" className="flex items-center gap-2">
 							<Heart className="w-4 h-4" />
@@ -193,7 +195,9 @@ export const FavoritesPage = () => {
 									<EmptyMedia variant="icon">
 										<ListMusic />
 									</EmptyMedia>
-									<EmptyTitle>{t("pages.favorites.noPlaylistsTitle")}</EmptyTitle>
+									<EmptyTitle>
+										{t("pages.favorites.noPlaylistsTitle")}
+									</EmptyTitle>
 									<EmptyDescription>
 										{t("pages.favorites.noPlaylistsDescription")}
 									</EmptyDescription>
@@ -276,4 +280,3 @@ export const FavoritesPage = () => {
 		</section>
 	);
 };
-

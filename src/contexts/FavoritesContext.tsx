@@ -113,18 +113,15 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
 		[loadFavorites],
 	);
 
-	const removeFavorite = useCallback(
-		async (trackId: string) => {
-			try {
-				await removeFavoriteDB(trackId);
-				dispatch({ type: "REMOVE_FAVORITE", payload: trackId });
-			} catch (error) {
-				console.error("Error removing favorite:", error);
-				throw error;
-			}
-		},
-		[],
-	);
+	const removeFavorite = useCallback(async (trackId: string) => {
+		try {
+			await removeFavoriteDB(trackId);
+			dispatch({ type: "REMOVE_FAVORITE", payload: trackId });
+		} catch (error) {
+			console.error("Error removing favorite:", error);
+			throw error;
+		}
+	}, []);
 
 	const toggleFavorite = useCallback(
 		async (track: Omit<FavoriteTrack, "addedAt">) => {
@@ -230,4 +227,3 @@ export const useIsFavorite = (trackId: string) => {
 
 	return { isFavorite: isFav, isLoading, refreshStatus: checkFavorite };
 };
-

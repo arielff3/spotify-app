@@ -15,7 +15,12 @@ import {
 	useReactTable,
 } from "@tanstack/react-table";
 import { ALBUMS_COLUMNS } from "@/pages/artistDetails/components/albumsTable/constants";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import {
+	ChevronLeft,
+	ChevronRight,
+	ChevronsLeft,
+	ChevronsRight,
+} from "lucide-react";
 import type { AlbumsTableProps } from "@/pages/artistDetails/components/albumsTable/types";
 
 export const AlbumsTable = ({ albums }: AlbumsTableProps) => {
@@ -87,10 +92,14 @@ export const AlbumsTable = ({ albums }: AlbumsTableProps) => {
 			<div className="flex items-center justify-between px-2">
 				<div className="flex-1 text-sm text-muted-foreground">
 					{t("pages.artistDetails.showingResults", {
-						from: table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1,
+						from:
+							table.getState().pagination.pageIndex *
+								table.getState().pagination.pageSize +
+							1,
 						to: Math.min(
-							(table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize,
-							albums.length
+							(table.getState().pagination.pageIndex + 1) *
+								table.getState().pagination.pageSize,
+							albums.length,
 						),
 						total: albums.length,
 					})}
@@ -127,7 +136,9 @@ export const AlbumsTable = ({ albums }: AlbumsTableProps) => {
 							onClick={() => table.setPageIndex(0)}
 							disabled={!table.getCanPreviousPage()}
 						>
-							<span className="sr-only">{t("pages.artistDetails.goToFirstPage")}</span>
+							<span className="sr-only">
+								{t("pages.artistDetails.goToFirstPage")}
+							</span>
 							<ChevronsLeft className="h-4 w-4" />
 						</Button>
 						<Button
@@ -136,7 +147,9 @@ export const AlbumsTable = ({ albums }: AlbumsTableProps) => {
 							onClick={() => table.previousPage()}
 							disabled={!table.getCanPreviousPage()}
 						>
-							<span className="sr-only">{t("pages.artistDetails.goToPreviousPage")}</span>
+							<span className="sr-only">
+								{t("pages.artistDetails.goToPreviousPage")}
+							</span>
 							<ChevronLeft className="h-4 w-4" />
 						</Button>
 						<Button
@@ -145,7 +158,9 @@ export const AlbumsTable = ({ albums }: AlbumsTableProps) => {
 							onClick={() => table.nextPage()}
 							disabled={!table.getCanNextPage()}
 						>
-							<span className="sr-only">{t("pages.artistDetails.goToNextPage")}</span>
+							<span className="sr-only">
+								{t("pages.artistDetails.goToNextPage")}
+							</span>
 							<ChevronRight className="h-4 w-4" />
 						</Button>
 						<Button
@@ -154,7 +169,9 @@ export const AlbumsTable = ({ albums }: AlbumsTableProps) => {
 							onClick={() => table.setPageIndex(table.getPageCount() - 1)}
 							disabled={!table.getCanNextPage()}
 						>
-							<span className="sr-only">{t("pages.artistDetails.goToLastPage")}</span>
+							<span className="sr-only">
+								{t("pages.artistDetails.goToLastPage")}
+							</span>
 							<ChevronsRight className="h-4 w-4" />
 						</Button>
 					</div>

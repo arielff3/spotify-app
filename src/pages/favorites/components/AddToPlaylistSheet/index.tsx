@@ -16,11 +16,13 @@ import {
 import { useFavoritesContext } from "@/contexts/FavoritesContext";
 import { usePlaylistsContext } from "@/contexts/PlaylistsContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import { type AddToPlaylistFormData, addToPlaylistSchema } from "@/pages/favorites/components/AddToPlaylistSheet/schema";
+import {
+	type AddToPlaylistFormData,
+	addToPlaylistSchema,
+} from "@/pages/favorites/components/AddToPlaylistSheet/schema";
 import type { AddToPlaylistSheetProps } from "@/pages/favorites/components/AddToPlaylistSheet/types";
 import { useSearchTracks } from "@/pages/favorites/hooks/useSearchTracks";
 import { addTrackToPlaylist } from "@/utils/playlistsDB";
-
 
 export const AddToPlaylistSheet = ({
 	playlistId,
@@ -51,7 +53,8 @@ export const AddToPlaylistSheet = ({
 	const searchQuery = watch("searchQuery");
 	const selectedTrackIds = watch("selectedTrackIds");
 	const debouncedSearch = useDebounce(searchQuery, 500);
-  const { data: searchResults, isLoading: isSearching } = useSearchTracks(debouncedSearch);
+	const { data: searchResults, isLoading: isSearching } =
+		useSearchTracks(debouncedSearch);
 
 	const toggleTrackSelection = (trackId: string) => {
 		if (selectedTrackIds.includes(trackId)) {
@@ -71,7 +74,7 @@ export const AddToPlaylistSheet = ({
 	};
 
 	const onSubmit = async (data: AddToPlaylistFormData) => {
-    if (!searchResults) return;
+		if (!searchResults) return;
 
 		try {
 			const tracksToAdd = searchResults.filter((track) =>
@@ -109,9 +112,8 @@ export const AddToPlaylistSheet = ({
 		}
 	};
 
-	const selectedTracks = searchResults?.filter((track) =>
-		selectedTrackIds.includes(track.id),
-	) || [];
+	const selectedTracks =
+		searchResults?.filter((track) => selectedTrackIds.includes(track.id)) || [];
 
 	return (
 		<Sheet open={open} onOpenChange={handleOpenChange}>
@@ -164,18 +166,24 @@ export const AddToPlaylistSheet = ({
 							<div className="border rounded-lg max-h-96 overflow-y-auto">
 								{searchResults.map((track) => {
 									const isSelected = selectedTrackIds.includes(track.id);
-									const isAlreadyInPlaylist = existingTrackIds.includes(track.id);
+									const isAlreadyInPlaylist = existingTrackIds.includes(
+										track.id,
+									);
 
 									return (
 										<button
 											key={track.id}
 											type="button"
-											onClick={() => !isAlreadyInPlaylist && toggleTrackSelection(track.id)}
+											onClick={() =>
+												!isAlreadyInPlaylist && toggleTrackSelection(track.id)
+											}
 											disabled={isAlreadyInPlaylist}
 											className={`w-full flex items-center gap-3 p-3 hover:bg-accent transition-colors border-b last:border-b-0 ${
 												isSelected ? "bg-accent" : ""
 											} ${
-												isAlreadyInPlaylist ? "opacity-50 cursor-not-allowed" : ""
+												isAlreadyInPlaylist
+													? "opacity-50 cursor-not-allowed"
+													: ""
 											}`}
 										>
 											<img
@@ -218,7 +226,9 @@ export const AddToPlaylistSheet = ({
 											className="w-10 h-10 rounded object-cover"
 										/>
 										<div className="flex-1 min-w-0">
-											<p className="font-medium truncate text-sm">{track.name}</p>
+											<p className="font-medium truncate text-sm">
+												{track.name}
+											</p>
 											<p className="text-xs text-muted-foreground truncate">
 												{track.artists[0].name}
 											</p>
@@ -252,7 +262,10 @@ export const AddToPlaylistSheet = ({
 						>
 							{t("common.cancel")}
 						</Button>
-						<Button type="submit" disabled={isSubmitting || selectedTrackIds.length === 0}>
+						<Button
+							type="submit"
+							disabled={isSubmitting || selectedTrackIds.length === 0}
+						>
 							{isSubmitting ? (
 								<>
 									<Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -271,4 +284,3 @@ export const AddToPlaylistSheet = ({
 		</Sheet>
 	);
 };
-

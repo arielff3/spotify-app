@@ -134,4 +134,3 @@ export const clearAllFavorites = async (): Promise<void> => {
 		transaction.oncomplete = () => db.close();
 	});
 };
-

@@ -289,6 +289,6 @@
 	],
 	"assist": {
 		"enabled": true,
-		"actions": { "source": { "organizeImports": "on" } }
+		"actions": { "source": { "organizeImports": "off" } }
 	}
 }

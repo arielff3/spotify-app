@@ -11,7 +11,6 @@ export const useFilters = () => {
 		),
 	);
 
-
 	const handleSearch = (value: string) => {
 		setQuery(value);
 		setPage(1);

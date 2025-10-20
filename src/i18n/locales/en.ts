@@ -4,25 +4,25 @@ export const en = {
 			artists: "Artists",
 			favorites: "Favorites",
 		},
-	common: {
-		loading: "Loading...",
-		error: "Error",
-		search: "Search",
-		clear: "Clear",
-		apply: "Apply",
-		previous: "Previous",
-		next: "Next",
-		page: "Page",
-		of: "of",
-		popular: "popular",
-		followers: "followers",
-		album: "Album",
-		single: "Single",
-		compilation: "Compilation",
-		viewDetails: "View Details",
-		cancel: "Cancel",
-		saving: "Saving...",
-	},
+		common: {
+			loading: "Loading...",
+			error: "Error",
+			search: "Search",
+			clear: "Clear",
+			apply: "Apply",
+			previous: "Previous",
+			next: "Next",
+			page: "Page",
+			of: "of",
+			popular: "popular",
+			followers: "followers",
+			album: "Album",
+			single: "Single",
+			compilation: "Compilation",
+			viewDetails: "View Details",
+			cancel: "Cancel",
+			saving: "Saving...",
+		},
 		pages: {
 			artists: {
 				title: "Artists",
@@ -88,7 +88,8 @@ export const en = {
 				allFavorites: "All Favorites",
 				playlistsTab: "Playlists",
 				noPlaylistsTitle: "No playlists created",
-				noPlaylistsDescription: "Create playlists when adding favorites and grouping them",
+				noPlaylistsDescription:
+					"Create playlists when adding favorites and grouping them",
 				empty: {
 					title: "No favorites yet",
 					description: "Start adding your favorite tracks from artists' pages",
@@ -105,7 +106,8 @@ export const en = {
 				playlistNameLabel: "Playlist Name",
 				playlistNamePlaceholder: "Ex: My favorite rock songs...",
 				playlistNotesLabel: "Playlist Notes (optional)",
-				playlistNotesPlaceholder: "Describe the theme or context of this playlist...",
+				playlistNotesPlaceholder:
+					"Describe the theme or context of this playlist...",
 				notesLabel: "Personal Notes (optional)",
 				notesPlaceholder:
 					"Add your notes about these tracks, why they are special to you...",
@@ -114,4 +116,3 @@ export const en = {
 		},
 	},
 };
-

@@ -10,10 +10,7 @@ import {
 	YAxis,
 } from "recharts";
 
-
-export const AlbumsTimelineChart = ({
-	albums,
-}: AlbumsTimelineChartProps) => {
+export const AlbumsTimelineChart = ({ albums }: AlbumsTimelineChartProps) => {
 	const { t } = useTranslation();
 
 	const albumsByYear = albums.reduce(
@@ -29,7 +26,7 @@ export const AlbumsTimelineChart = ({
 				};
 			}
 			acc[year].total += 1;
-			
+
 			if (album.album_type === "album") {
 				acc[year].albums += 1;
 			} else if (album.album_type === "single") {
@@ -37,16 +34,23 @@ export const AlbumsTimelineChart = ({
 			} else if (album.album_type === "compilation") {
 				acc[year].compilations += 1;
 			}
-			
+
 			return acc;
 		},
 		{} as Record<
 			string,
-			{ year: string; total: number; albums: number; singles: number; compilations: number }
+			{
+				year: string;
+				total: number;
+				albums: number;
+				singles: number;
+				compilations: number;
+			}
 		>,
 	);
-	const chartData = Object.values(albumsByYear)
-		.sort((a, b) => Number.parseInt(a.year) - Number.parseInt(b.year));
+	const chartData = Object.values(albumsByYear).sort(
+		(a, b) => Number.parseInt(a.year) - Number.parseInt(b.year),
+	);
 
 	return (
 		<div className="w-full">
@@ -54,7 +58,10 @@ export const AlbumsTimelineChart = ({
 				{t("pages.artistDetails.charts.albumsTimeline")}
 			</h3>
 			<ResponsiveContainer width="100%" height={350}>
-				<LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+				<LineChart
+					data={chartData}
+					margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+				>
 					<CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
 					<XAxis
 						dataKey="year"
@@ -105,7 +112,9 @@ export const AlbumsTimelineChart = ({
 													<span className="text-muted-foreground">
 														{t("common.compilation")}s:
 													</span>{" "}
-													<span className="font-semibold">{data.compilations}</span>
+													<span className="font-semibold">
+														{data.compilations}
+													</span>
 												</div>
 											)}
 										</div>
@@ -128,4 +137,3 @@ export const AlbumsTimelineChart = ({
 		</div>
 	);
 };
-

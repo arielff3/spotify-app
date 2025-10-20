@@ -4,5 +4,5 @@ export interface UseGetAllArtistsParams {
 	page: number;
 	limit?: number;
 	search?: string;
-  type?: FilterTypes;
+	type?: FilterTypes;
 }

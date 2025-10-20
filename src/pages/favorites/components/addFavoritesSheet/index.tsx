@@ -8,7 +8,7 @@ import {
 	Search,
 	X,
 } from "lucide-react";
-import {  useState } from "react";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -68,7 +68,8 @@ export const AddFavoritesSheet = () => {
 	const selectedTracks = watch("selectedTracks");
 	const addToPlaylist = watch("addToPlaylist");
 	const debouncedSearch = useDebounce(searchQuery, 500);
-	const { data: searchResults, isLoading: isSearching } = useSearchTracks(debouncedSearch);
+	const { data: searchResults, isLoading: isSearching } =
+		useSearchTracks(debouncedSearch);
 	const formatDuration = (ms: number) => {
 		const minutes = Math.floor(ms / 60000);
 		const seconds = Math.floor((ms % 60000) / 1000);
@@ -155,7 +156,10 @@ export const AddFavoritesSheet = () => {
 					{t("pages.favorites.addFavorites")}
 				</Button>
 			</SheetTrigger>
-			<SheetContent side="right" className="w-full sm:max-w-2xl overflow-y-auto">
+			<SheetContent
+				side="right"
+				className="w-full sm:max-w-2xl overflow-y-auto"
+			>
 				<SheetHeader>
 					<SheetTitle className="flex items-center gap-2">
 						<Music className="w-6 h-6" />
@@ -195,7 +199,9 @@ export const AddFavoritesSheet = () => {
 							<Label>{t("pages.favorites.searchResults")}</Label>
 							<div className="border rounded-lg max-h-64 overflow-y-auto">
 								{searchResults.map((track) => {
-									const isSelected = selectedTracks.some((t) => t.id === track.id);
+									const isSelected = selectedTracks.some(
+										(t) => t.id === track.id,
+									);
 									return (
 										<button
 											key={track.id}
@@ -238,7 +244,8 @@ export const AddFavoritesSheet = () => {
 							<div className="flex items-center justify-between">
 								<Label className="flex items-center gap-2">
 									<ListMusic className="w-4 h-4" />
-									{t("pages.favorites.selectedTracks")} ({selectedTracks.length}/10)
+									{t("pages.favorites.selectedTracks")} ({selectedTracks.length}
+									/10)
 								</Label>
 								<Button
 									type="button"
@@ -261,7 +268,9 @@ export const AddFavoritesSheet = () => {
 											className="w-10 h-10 rounded object-cover"
 										/>
 										<div className="flex-1 min-w-0">
-											<p className="font-medium truncate text-sm">{track.name}</p>
+											<p className="font-medium truncate text-sm">
+												{track.name}
+											</p>
 											<p className="text-xs text-muted-foreground truncate">
 												{track.artistName}
 											</p>
@@ -371,4 +380,3 @@ export const AddFavoritesSheet = () => {
 		</Sheet>
 	);
 };
-

@@ -11,14 +11,14 @@ import {
 	YAxis,
 } from "recharts";
 
-
 export const TracksPopularityChart = ({
 	tracks,
 }: TracksPopularityChartProps) => {
 	const { t } = useTranslation();
 
 	const chartData = tracks.map((track) => ({
-		name: track.name.length > 20 ? `${track.name.substring(0, 20)}...` : track.name,
+		name:
+			track.name.length > 20 ? `${track.name.substring(0, 20)}...` : track.name,
 		fullName: track.name,
 		popularity: track.popularity,
 	}));
@@ -36,7 +36,10 @@ export const TracksPopularityChart = ({
 				{t("pages.artistDetails.charts.tracksPopularity")}
 			</h3>
 			<ResponsiveContainer width="100%" height={350}>
-				<BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
+				<BarChart
+					data={chartData}
+					margin={{ top: 20, right: 30, left: 20, bottom: 80 }}
+				>
 					<CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
 					<XAxis
 						dataKey="name"
@@ -75,7 +78,10 @@ export const TracksPopularityChart = ({
 					/>
 					<Bar dataKey="popularity" radius={[8, 8, 0, 0]}>
 						{chartData.map((entry, index) => (
-							<Cell key={`cell-${index}`} fill={getBarColor(entry.popularity)} />
+							<Cell
+								key={`cell-${index}`}
+								fill={getBarColor(entry.popularity)}
+							/>
 						))}
 					</Bar>
 				</BarChart>
@@ -83,4 +89,3 @@ export const TracksPopularityChart = ({
 		</div>
 	);
 };
-
