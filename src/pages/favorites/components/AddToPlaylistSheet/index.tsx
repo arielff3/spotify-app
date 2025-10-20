@@ -14,7 +14,6 @@ import {
 	SheetTitle,
 } from "@/components/ui/sheet";
 import { useFavoritesContext } from "@/contexts/FavoritesContext";
-import { usePlaylistsContext } from "@/contexts/PlaylistsContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import {
 	type AddToPlaylistFormData,
